@@ -1,12 +1,19 @@
-# tensorflow-GPU
+# Containerized Tensorflow GPU development environment
 
 A containerized TensorFlow AI/ML development environment with NVIDIA GPU support. This repository provides a consistent development environment using VS Code Dev Containers, eliminating the need for manual environment setup.
+
+The underlying docker container is based on NVIDIA's TensorFlow 24.06 container. For details see:
+
+- George's TensorFlow 2.16 container on DockerHub: [gperdrizet/tensorflow-gpu](https://hub.docker.com/r/gperdrizet/tensorflow-gpu)
+- NVIDIA's [TensorFlow Release 24.06](https://docs.nvidia.com/deeplearning/frameworks/tensorflow-release-notes/rel-24-06.html)
+
+The container needs Docker and a compatible NVIDIA driver installed. It should support GPUs back to Pascal on both Windows and Linux (MacOS users should be able to run it without GPU support - see below). 
 
 ## Prerequisites
 
 Before you can use this development container, you need to install:
 
-1. **NVIDIA driver**
+1. **NVIDIA driver >=545** (slightly older drivers may work - try it before you make major changes to your host system)
 2. **Docker** (see platform-specific instructions below)
 2. **Visual Studio Code** - [Download here](https://code.visualstudio.com)
 3. **Dev Containers extension** - Install from the VS Code Extensions marketplace (`ms-vscode-remote.remote-containers`)
@@ -19,7 +26,7 @@ Before you can use this development container, you need to install:
 
 Full installation documentation here: [Install Docker Desktop on Windows](https://docs.docker.com/desktop/setup/install/windows-install)
 
-1. **Check System Requirements**
+1. **Check system requirements**
    - Windows 10 64-bit: Pro, Enterprise, or Education (Build 19041 or higher), or Windows 11
    - Windows 11 64-bit: Enterprise, Pro, or Education version 23H2 (build 22631) or higher
    - WSL 2.1.5 or later
@@ -48,7 +55,7 @@ Full installation documentation here: [Install Docker Desktop on Windows](https:
     ```
    - Restart your computer when prompted
 
-3. **Download and Install Docker Desktop**
+3. **Download and install Docker Desktop**
    - Download Docker Desktop from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
    - Run the installer and follow the prompts
    - Ensure "Use WSL 2 instead of Hyper-V" is selected during installation
@@ -57,7 +64,7 @@ Full installation documentation here: [Install Docker Desktop on Windows](https:
    - Launch Docker Desktop from the Start menu
    - Wait for Docker to fully start (the whale icon in the system tray will stop animating)
 
-5. **Verify Installation**
+5. **Verify installation**
    - Open a terminal (PowerShell or Command Prompt) and run:
      ```powershell
      docker --version
@@ -65,7 +72,7 @@ Full installation documentation here: [Install Docker Desktop on Windows](https:
 
     The command should complete without error.
 
-> **Note for GPU Support:** To use GPU acceleration on Windows, you'll need an NVIDIA GPU with updated drivers.
+> **Note for GPU support:** To use GPU acceleration on Windows, you'll need an NVIDIA GPU with updated drivers.
 
 ---
 
@@ -73,13 +80,13 @@ Full installation documentation here: [Install Docker Desktop on Windows](https:
 
 For Linux set-up instructions, refer to [Install Docker Desktop on Linux](https://docs.docker.com/desktop/setup/install/linux).
 
-> **Note for GPU Support:** To use GPU acceleration on Windows, you'll need an NVIDIA GPU with updated drivers and the [NVIDIA container toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
+> **Note for GPU support:** To use GPU acceleration on Windows, you'll need an NVIDIA GPU with updated drivers and the [NVIDIA container toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
 
 ### macOS
 
 Apple dropped NVIDIA support around 2014, but you can still use this container to run TensorFlow on CPU only. See full docker setup documentation here: [Install Docker Desktop on Mac](https://docs.docker.com/desktop/setup/install/mac-install)
 
-1. **Check System Requirements**
+1. **Check system requirements**
    - macOS 14 (Sonoma) or newer
    - At least 4 GB of RAM
 
@@ -99,7 +106,7 @@ Apple dropped NVIDIA support around 2014, but you can still use this container t
    - Click the Docker icon in the Applications folder
    - Wait for Docker to fully start (check the whale icon in the menu bar)
 
-5. **Verify Installation**
+5. **Verify installation**
    - Open Terminal and run:
      ```bash
      docker --version
@@ -111,25 +118,45 @@ Apple dropped NVIDIA support around 2014, but you can still use this container t
 
 ---
 
-## Getting Started
+## Getting started
 
-1. Clone this repository:
+1. **Fork this repository** to create your own copy:
+   - Click the **"Fork"** button in the top-right corner of this repository's GitHub page
+   - Select your GitHub account as the destination
+   - This creates your own copy where you can save your work and push changes
+
+2. **Clone your forked repository:**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/<your-username>/tensorflow-GPU.git
    cd tensorflow-GPU
    ```
+   > Replace `<your-username>` with your GitHub username
 
-2. Open the folder in VS Code:
+3. **Open the folder in VS Code:**
    ```bash
    code .
    ```
 
-3. When prompted, click **"Reopen in Container"** or run the command:
-   - Press `F1` → Type "Dev Containers: Reopen in Container" → Press Enter
+4. **Launch the dev container:**
+   - When prompted, click **"Reopen in Container"**
+   - Or press `F1` → Type "Dev Containers: Reopen in Container" → Press Enter
 
-4. Wait for the container to build (this may take a few minutes on first run)
+5. **Wait for the container to build** (this may take a few minutes on first run)
 
-5. Start coding! Open `notebooks/test.ipynb` to verify your environment is working.
+6. **Start coding!** Open and run `notebooks/test.ipynb` to verify your environment is working.
+
+### Keeping Your Fork Updated
+
+To sync your fork with the latest changes from the original repository:
+
+```bash
+# Add the original repo as an upstream remote (only needed once)
+git remote add upstream https://github.com/gperdrizet/tensorflow-GPU.git
+
+# Fetch and merge updates
+git fetch upstream
+git merge upstream/main
+```
 
 ---
 
