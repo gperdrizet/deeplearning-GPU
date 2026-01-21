@@ -2,11 +2,16 @@
 // README at: https://github.com/devcontainers/templates/tree/main/src/python
 {
 	// Container definition for TensorFlow development environment
-	// Uses NVIDIA's official TensorFlow 24.06 image with GPU support
-    // See here: https://docs.nvidia.com/deeplearning/frameworks/tensorflow-release-notes/rel-24-06.html
+	// Uses George's TensorFlow 2.16 container (based on NVIDIA's official TensorFlow 24.06 image with GPU support)
+	// See here: https://hub.docker.com/r/gperdrizet/tensorflow-gpu
+    // And here: https://docs.nvidia.com/deeplearning/frameworks/tensorflow-release-notes/rel-24-06.html
 	"name": "TensorFlow 2.16",
-	"image": "nvcr.io/nvidia/tensorflow:24.06-tf2-py3",
-    "runArgs": ["--gpus", "all"],
+	"image": "gperdrizet/tensorflow-gpu",
+    "runArgs": ["--gpus", "all"],   // Enable all available GPUs in the container
+	"remoteUser": "vscode",         // Use the 'vscode' user provided by the base image
+	"containerEnv": {
+		"TF_CPP_MIN_LOG_LEVEL": "1" // Suppress TensorFlow INFO logs for cleaner output
+  	},
 
 	// Custom configuration options
 	"customizations": {
