@@ -1,166 +1,88 @@
-# Containerized TensorFlow GPU development environment
+# TensorFlow GPU Development Environment
 
-A containerized TensorFlow AI/ML development environment with NVIDIA GPU support. This repository provides a consistent development environment with wide GPU compatibility using VS Code Dev Containers, eliminating the need for (most of the) manual setup. It provides the following:
+A ready-to-use TensorFlow environment with NVIDIA GPU support for VS Code.
 
-- CUDA 12.5
-- cuDNN 9.1
-- Python 3.10
-- TensorFlow 2.16
-- Keras 3.3
-- NumPy 1.24
-- Pandas 2.2
-- Scikit-learn 1.4
-- SciPy 1.13
-- Matplotlib 3.10
-- jupyterlab 2.3
+## What's Included
 
-And much more - the underlying docker container is a lightly customized version of NVIDIA's official TensorFlow 24.06 container. For full details see:
+| Category | Versions |
+|----------|----------|
+| **GPU** | CUDA 12.5, cuDNN 9.1 |
+| **ML** | TensorFlow 2.16, Keras 3.3, Scikit-learn 1.4 |
+| **Python** | Python 3.10, NumPy 1.24, Pandas 2.2, Matplotlib 3.10 |
+| **Tools** | JupyterLab, TensorBoard (auto-starts on port 6006) |
 
-- George's TensorFlow 2.16 container on DockerHub: [gperdrizet/tensorflow-gpu](https://hub.docker.com/r/gperdrizet/tensorflow-gpu)
-- NVIDIA's [TensorFlow Release 24.06 container](https://docs.nvidia.com/deeplearning/frameworks/tensorflow-release-notes/rel-24-06.html)
+Based on [NVIDIA's TensorFlow 24.06 container](https://docs.nvidia.com/deeplearning/frameworks/tensorflow-release-notes/rel-24-06.html).
 
-The container needs Docker and a compatible NVIDIA driver to run. It should support NVIDIA GPUs back to Pascal on both Windows and Linux. MacOS users or those otherwise without NVIDIA GPUs can run the CPU only version, see here [gperdrizet/tensorflow-CPU](https://github.com/gperdrizet/tensorflow-CPU). 
-
-## 1. Prerequisites
-
-Before you can use this development container, you need to have:
-
-1. **A Pascal or later NVIDIA GPU**
-2. **NVIDIA driver >=545** (slightly older drivers may work - try it before you make major changes to your host system)
-3. **Docker** (see platform-specific instructions below)
-4. **Visual Studio Code** - [Download here](https://code.visualstudio.com)
-5. **Dev Containers extension** - Install from the VS Code Extensions marketplace (`ms-vscode-remote.remote-containers`)
+> **No NVIDIA GPU?** Use the CPU version instead: [gperdrizet/tensorflow-CPU](https://github.com/gperdrizet/tensorflow-CPU)
 
 ---
 
-## 2. Docker installation instructions
+## Requirements
 
-### 2.1. Windows
+- **NVIDIA GPU** (Pascal or newer) with driver ≥545
+- **Docker** with GPU support ([Windows](https://docs.docker.com/desktop/setup/install/windows-install) | [Linux](https://docs.docker.com/desktop/setup/install/linux))
+- **VS Code** with the [Dev Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
-Full installation documentation here: [Install Docker Desktop on Windows](https://docs.docker.com/desktop/setup/install/windows-install)
-
-1. **Check system requirements**
-   - Windows 10 64-bit: Pro, Enterprise, or Education (Build 19041 or higher), or Windows 11
-   - Windows 11 64-bit: Enterprise, Pro, or Education version 23H2 (build 22631) or higher
-   - WSL 2.1.5 or later
-   - 64-bit processor with Second Level Address Translation (SLAT)
-   - 4GB system RAM
-   - Enable hardware virtualization in BIOS/UEFI. For more information, see Virtualization.
-
-2. **Install or update WSL**
-
-    Full documentation here: [WSL: Verification and setup](https://docs.docker.com/desktop/setup/install/windows-install#wsl-verification-and-setup)
-
-    - To check your WSL version, open PowerShell as Administrator and run:
-
-    ```powershell
-    wsl --version
-    ```
-
-    - Then install or update as needed:
-
-    ```powershell
-    wsl --install
-    ```
-
-    ```powershell
-    wsl --update
-    ```
-   - Restart your computer when prompted
-
-3. **Download and install Docker Desktop**
-   - Download Docker Desktop from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
-   - Run the installer and follow the prompts
-   - Ensure "Use WSL 2 instead of Hyper-V" is selected during installation
-
-4. **Start Docker Desktop**
-   - Launch Docker Desktop from the Start menu
-   - Wait for Docker to fully start (the whale icon in the system tray will stop animating)
-
-5. **Verify installation**
-   - Open a terminal (PowerShell or Command Prompt) and run:
-     ```powershell
-     docker --version
-     ```
-
-    The command should complete without error.
-
-> **Note for GPU support:** To use GPU acceleration on Windows, you'll need an NVIDIA GPU with updated drivers.
+> **Linux users:** Also install the [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 
 ---
 
-### 2.2. Linux
+## Quick Start
 
-For Linux set-up instructions, refer to [Install Docker Desktop on Linux](https://docs.docker.com/desktop/setup/install/linux).
+1. **Fork** this repository (click "Fork" button above)
 
-> **Note for GPU support:** To use GPU acceleration on Linux, you'll need an NVIDIA GPU with updated drivers and the [NVIDIA container toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
-
----
-
-## 3. Getting started
-
-Once you have a current NVIDIA driver (>=545) and Docker with GPU support. Starting a CUDA/TensorFlow development environment from this repository is easy. Use it like a template to start new projects:
-
-1. **Fork this repository** to create your own copy:
-   - Click the **"Fork"** button in the top-right corner of this repository's GitHub page
-   - Select your GitHub account as the destination
-   - This creates your own copy where you can save your work and push changes
-
-2. **Clone your forked repository:**
-
-   On your local machine run:
-   
+2. **Clone** your fork:
    ```bash
    git clone https://github.com/<your-username>/tensorflow-GPU.git
-   cd tensorflow-GPU
    ```
-   > Replace `<your-username>` with your GitHub username
 
-4. **Open the folder in VS Code:**
+3. **Open in VS Code:**
    ```bash
+   cd tensorflow-GPU
    code .
    ```
 
-5. **Launch the dev container:**
-   - When prompted, click **"Reopen in Container"**
-   - Or press `F1` → Type "Dev Containers: Reopen in Container" → Press Enter
+4. **Reopen in Container** when prompted (or press `F1` → "Dev Containers: Reopen in Container")
 
-6. **Wait for the container to build** (this may take a few minutes on first run)
+5. **Verify** by running `notebooks/environment_test.ipynb`
 
-7. **Start coding!** Open and run `notebooks/test.ipynb` to verify your environment is working.
+---
 
-## 4. Keeping Your Fork Updated
+## TensorBoard
 
-To sync your fork with the latest changes from this original repository:
+TensorBoard starts automatically and is available at **http://localhost:6006**
 
 ```bash
-# Add the original repo as an upstream remote (only needed once)
+# Attach to TensorBoard session
+screen -r tensorboard
+
+# Detach without stopping
+Ctrl+A, D
+```
+
+Place your logs in the `logs/` directory.
+
+---
+
+## Keeping Your Fork Updated
+
+```bash
+# Add upstream (once)
 git remote add upstream https://github.com/gperdrizet/tensorflow-GPU.git
 
-# Fetch and merge updates
+# Sync
 git fetch upstream
 git merge upstream/main
 ```
 
 ---
 
-## TensorBoard
-
-When the container starts, TensorBoard will start and port 6006 will be published automatically via Docker so that you can access it in a web browser on the host machine. Place TensorBoard logs in the `logs/` directory at the project root.
-
-TensorBoard runs inside of a screen, you can attach to the session with:
-
-```text
-screen -r tensorboard
-```
-
-The TensorBoard VS Code extension is also installed by default, so you can access TensorBoard from inside the container by finding `Python: Launch TensorBoard` in the command palette.
-
----
-
 ## Troubleshooting
 
-- **Docker not starting:** Ensure virtualization is enabled in your BIOS settings
-- **Permission denied errors on Linux:** Make sure you've added your user to the docker group and logged out/in
-- **GPU not detected:** Verify NVIDIA drivers and Container Toolkit (if needed) are properly installed
-- **Container build fails:** Ensure you have a stable internet connection for downloading the TensorFlow image
+| Problem | Solution |
+|---------|----------|
+| Docker won't start | Enable virtualization in BIOS |
+| Permission denied (Linux) | Add user to docker group, then log out/in |
+| GPU not detected | Update NVIDIA drivers (≥545) |
+| Container build fails | Check internet connection |
+
