@@ -62,7 +62,7 @@
 	"onCreateCommand": "",
 
 	// Use 'postCreateCommand' to run commands once after the container is created
-	"postCreateCommand": "mkdir -p logs && mkdir -p models",
+	"postCreateCommand": "mkdir -p logs && mkdir -p models && mkdir -p data",
 
 	// Use 'postAttachCommand' to run commands each time a user connects to the container
 	"postAttachCommand": "screen -dmS tensorboard tensorboard --logdir=logs"
