@@ -96,6 +96,42 @@ For persistent packages that survive container rebuilds:
 
 Now your packages will be automatically installed whenever the container is created.
 
+## Using as a Template for New Projects
+
+You can use your fork as a starting point for new TensorFlow projects:
+
+1. **Clone** your fork:
+   ```bash
+   git clone https://github.com/<your-username>/tensorflow-GPU.git
+   ```
+
+2. **Rename** the directory to your new project name:
+   ```bash
+   mv tensorflow-GPU my-new-project
+   cd my-new-project
+   ```
+
+3. **Create a new repository** on GitHub for your project (don't initialize with README)
+
+4. **Update the git remote** to point to your new repository:
+   ```bash
+   git remote set-url origin https://github.com/<your-username>/my-new-project.git
+   ```
+
+5. **Push** to your new repository:
+   ```bash
+   git push -u origin main
+   ```
+
+6. **Clean up** (optional): Remove the example notebooks, then add your own code:
+   ```bash
+   rm -rf notebooks/*.ipynb
+   git add -A && git commit -m "Initial project setup"
+   git push
+   ```
+
+Now you have a fresh TensorFlow GPU project with the dev container configuration ready to go!
+
 ## Keeping Your Fork Updated
 
 ```bash
