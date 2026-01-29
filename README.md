@@ -1,5 +1,7 @@
 # TensorFlow GPU development environment
 
+**Now includes PyTorch 2.10**
+
 A ready-to-use TensorFlow environment with NVIDIA GPU support for VS Code. Designed for cross-platform support and wide GPU compatibility.
 
 ## What's included
@@ -7,7 +9,7 @@ A ready-to-use TensorFlow environment with NVIDIA GPU support for VS Code. Desig
 | Category | Versions |
 |----------|----------|
 | **GPU** | CUDA 12.5, cuDNN 9.1 |
-| **ML** | TensorFlow 2.16, Keras 3.3, Scikit-learn 1.4 |
+| **ML** | TensorFlow 2.16, Keras 3.3, PyTorch 2.10, Scikit-learn 1.4 |
 | **Python** | Python 3.10, NumPy 1.24, Pandas 2.2, Matplotlib 3.10 |
 | **Tools** | JupyterLab, TensorBoard (auto-starts on port 6006) |
 
