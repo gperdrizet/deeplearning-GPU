@@ -5,7 +5,7 @@
 	// Based on NVIDIA's official TensorFlow 24.06 image with GPU support
 	// See here: https://hub.docker.com/r/gperdrizet/deeplearning-gpu
     // And here: https://docs.nvidia.com/deeplearning/frameworks/tensorflow-release-notes/rel-24-06.html
-	"name": "Deeplearning GPU",
+	"name": "DeepLearning GPU",
 	"image": "gperdrizet/deeplearning-gpu",
     "runArgs": [
 		"--gpus", "all",              // Enable all available GPUs in the container
