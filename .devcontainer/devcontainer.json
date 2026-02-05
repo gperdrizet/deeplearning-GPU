@@ -44,11 +44,8 @@
 			],
 			
 			// Disable automatic port forwarding to give explicit control
-			// "remote.autoForwardPorts": false,
 			"remote.restoreForwardedPorts": false,
 
-			// Auto-close the Configuring terminal when setup completes successfully
-			// "terminal.integrated.enablePersistentSessions": false
 		},
 
 		// Add the IDs of VS code extensions you want to install here
