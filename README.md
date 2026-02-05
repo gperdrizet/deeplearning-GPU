@@ -60,7 +60,7 @@ Check your GPU's compute capability: [NVIDIA CUDA GPUs](https://developer.nvidia
 
 ## Quick start
 
-To quickly try the container environment out on your system do the following. If you want to use is for your own project see below.
+To quickly try the container environment out on your system do the following. If you want to use it for your own project, see below.
 
 1. **Fork** this repository (click "Fork" button above)
 
